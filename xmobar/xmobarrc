@@ -1,0 +1,40 @@
+Config { overrideRedirect = False
+       , font     = "IBM Plex Mono 11"
+       , bgColor  = "#181818"
+       , fgColor  = "#f8f8f8"
+       , position = Top
+       --, border = BottomB
+       --, borderColor = "#000000"
+       , commands = [
+                    Run Cpu
+                        [ "-L", "3"
+                        , "-H", "50"
+                        , "--high"  , "#ab4642"
+                        , "--normal", "#f8f8f8"
+                        ] 10
+                    , Run CoreTemp       
+                        [ "--template" , "Temp: <core0>°C"
+                        , "--Low"      , "70"        -- units: °C
+                        , "--High"     , "80"        -- units: °C
+                        , "--low"      , "#f8f8f8"
+                        , "--normal"   , "#f7ca88"
+                        , "--high"     , "#ab4642"
+                        ] 50    
+                    , Run Memory ["--template", "Mem: <usedratio>%"] 10
+                    , Run Battery        
+                        [ "--template" , "<acstatus>: <left>% - <timeleft>"
+                        , "--Low"      , "10"        -- units: %
+                        , "--High"     , "80"        -- units: %
+                        , "--low"      , "#ab4642"
+                        , "--normal"   , "#f8f8f8"
+                        , "--high"     , "#f8f8f8"
+                        ] 50
+                    , Run Swap [] 10
+                    , Run Date "%a %Y-%m-%d <fc=#86c1b9>%H:%M</fc>" "date" 10
+                    , Run Com "/home/felix/.config/xmobar/scripts/wifi.sh" [] "wifi" 30
+                    , Run StdinReader
+                    ]
+       , sepChar  = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ –||| %cpu% || %coretemp% || %memory% * %swap% || WLAN: %wifi% || %battery% || %date%"
+       }
