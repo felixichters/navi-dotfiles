@@ -3,8 +3,8 @@ Config { overrideRedirect = False
        , bgColor  = "#181818"
        , fgColor  = "#f8f8f8"
        , position = Top
-       --, border = BottomB
-       --, borderColor = "#000000"
+       -- , border = BottomB
+       -- , borderColor = "#f8f8f8"
        , commands = [
                     Run Cpu
                         [ "-L", "3"
@@ -13,16 +13,16 @@ Config { overrideRedirect = False
                         , "--normal", "#f8f8f8"
                         ] 10
                     , Run CoreTemp       
-                        [ "--template" , "Temp: <core0>°C"
-                        , "--Low"      , "70"        -- units: °C
-                        , "--High"     , "80"        -- units: °C
+                        [ "--template" , "<core0>°C"
+                        , "--Low"      , "60"        -- units: °C
+                        , "--High"     , "70"        -- units: °C
                         , "--low"      , "#f8f8f8"
                         , "--normal"   , "#f7ca88"
                         , "--high"     , "#ab4642"
                         ] 50    
                     , Run Memory ["--template", "Mem: <usedratio>%"] 10
                     , Run Battery        
-                        [ "--template" , "<acstatus>: <left>% - <timeleft>"
+                        [ "--template" , "<acstatus>: <left>% | <timeleft>h"
                         , "--Low"      , "10"        -- units: %
                         , "--High"     , "80"        -- units: %
                         , "--low"      , "#ab4642"
@@ -31,10 +31,12 @@ Config { overrideRedirect = False
                         ] 50
                     , Run Swap [] 10
                     , Run Date "%a %Y-%m-%d <fc=#86c1b9>%H:%M</fc>" "date" 10
-                    , Run Com "/home/felix/.config/xmobar/scripts/wifi.sh" [] "wifi" 30
+                    , Run Com "/home/felix/code/scripts/xmobar/wifi.sh" [] "wifi" 30
+                    , Run Com "/home/felix/code/scripts/xmobar/volume.sh" [] "volume" 10
+                    , Run Com "/home/felix/code/scripts/xmobar/backlight.sh" [] "backlight" 10
                     , Run StdinReader
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ –||| %cpu% || %coretemp% || %memory% * %swap% || WLAN: %wifi% || %battery% || %date%"
+       , template = "%StdinReader% |||–-}{-–||| %cpu% | %coretemp% || %memory% | %swap% || %battery% || Vol: %volume% || Backlight: %backlight% || %wifi% || %date%"
        }
