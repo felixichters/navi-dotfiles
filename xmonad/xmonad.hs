@@ -52,15 +52,16 @@ defaults = def
 	`additionalKeysP`
 	[
 		("M-S-r", restart "xmonad" True),
-		("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume 0 +10%"),
-		("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume 0 -10%"),
+		("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume 0 +1%"),
+		("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume 0 -1%"),
 		--("<XF86AudioMute>", spawn "pactl set-sink-mute 0 false"),
 		("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10"),
 		("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10"),
 		("M-q", kill),
 		("M-<Return>", spawn "alacritty"),
 		("M-r", spawn "rofi -show run"),
-		("M-e", spawn "alacritty -e ranger")
+		("M-e", spawn "alacritty -e ranger"),
+        ("M-t", spawn "alacritty -e btop")
 		
 		
 	]

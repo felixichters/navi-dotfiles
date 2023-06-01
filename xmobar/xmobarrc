@@ -32,8 +32,8 @@ Config { overrideRedirect = False
                     , Run Swap [] 10
                     , Run Date "%a %Y-%m-%d <fc=#86c1b9>%H:%M</fc>" "date" 10
                     , Run Com "/home/felix/code/scripts/xmobar/wifi.sh" [] "wifi" 30
-                    , Run Com "/home/felix/code/scripts/xmobar/volume.sh" [] "volume" 10
-                    , Run Com "/home/felix/code/scripts/xmobar/backlight.sh" [] "backlight" 10
+                    , Run Com "/home/felix/code/scripts/xmobar/volume.sh" [] "volume" 1
+                    , Run Com "/home/felix/code/scripts/xmobar/backlight.sh" [] "backlight" 5
                     , Run StdinReader
                     ]
        , sepChar  = "%"
