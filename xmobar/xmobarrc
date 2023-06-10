@@ -2,9 +2,11 @@ Config { overrideRedirect = False
        , font     = "IBM Plex Mono 11"
        , bgColor  = "#181818"
        , fgColor  = "#f8f8f8"
-       , position = Top
-       -- , border = BottomB
-       -- , borderColor = "#f8f8f8"
+       , position = TopH 25
+       --, alpha    = 0
+       --, border = BottomB
+       --, borderColor = "#181818"
+       --, borderWidth = 10
        , commands = [
                     Run Cpu
                         [ "-L", "3"
@@ -12,31 +14,32 @@ Config { overrideRedirect = False
                         , "--high"  , "#ab4642"
                         , "--normal", "#f8f8f8"
                         ] 10
+                    , Run MultiCpu
+                        [ "--template", "cpu:(<total0>%-<total1>%)" 
+                        , "--High"    , "50"  -- units: % 
+                        , "--high"    , "#ab4642"
+                        ] 10
                     , Run CoreTemp       
                         [ "--template" , "<core0>°C"
-                        , "--Low"      , "60"        -- units: °C
-                        , "--High"     , "70"        -- units: °C
-                        , "--low"      , "#f8f8f8"
-                        , "--normal"   , "#f7ca88"
-                        , "--high"     , "#ab4642"
-                        ] 50    
-                    , Run Memory ["--template", "Mem: <usedratio>%"] 10
+                        , "--High"     , "60"        -- units: °C
+                        , "--high"     , "#ab4642"  
+                        ] 10    
+                    , Run Memory ["--template", "mem:<usedratio>%"] 10
                     , Run Battery        
-                        [ "--template" , "<acstatus>: <left>% | <timeleft>h"
-                        , "--Low"      , "10"        -- units: %
-                        , "--High"     , "80"        -- units: %
+                        [ "--template" , "batt:<acstatus>/<left>%"
+                        , "--Low"      , "20"        -- units: %
                         , "--low"      , "#ab4642"
-                        , "--normal"   , "#f8f8f8"
-                        , "--high"     , "#f8f8f8"
                         ] 50
                     , Run Swap [] 10
-                    , Run Date "%a %Y-%m-%d <fc=#86c1b9>%H:%M</fc>" "date" 10
-                    , Run Com "/home/felix/code/scripts/xmobar/wifi.sh" [] "wifi" 30
-                    , Run Com "/home/felix/code/scripts/xmobar/volume.sh" [] "volume" 1
-                    , Run Com "/home/felix/code/scripts/xmobar/backlight.sh" [] "backlight" 5
+                    , Run Date " <fc=#7cafc2>%H:%M</fc> %a %Y-%m-%d" "date" 10
+                    , Run Com "/home/felix/code/scripts/system_info/wifi.sh" [] "wifi" 30
+                    , Run Com "/home/felix/code/scripts/system_info/volume.sh" [] "volume" 1
+                    , Run Com "/home/felix/code/scripts/system_info/backlight.sh" [] "backlight" 5
                     , Run StdinReader
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% |||–-}{-–||| %cpu% | %coretemp% || %memory% | %swap% || %battery% || Vol: %volume% || Backlight: %backlight% || %wifi% || %date%"
+       , template = "%date% [%battery%]}%StdinReader%{[%multicpu%/%coretemp%]-[%memory%]-[vol:%volume%]-[backl:%backlight%] %wifi% "
+       
+
        }
