@@ -4,13 +4,12 @@ import XMonad.Util.Ungrab
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.StatusBar
-import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.DynamicHooks
 import XMonad.Util.ClickableWorkspaces
 import XMonad.Hooks.EwmhDesktops
 import System.IO
 import XMonad.Layout.Spacing
+import XMonad.Layout.MultiColumns
 
 main :: IO()
 main = do 
@@ -24,7 +23,7 @@ myLogHook :: Handle -> X()
 myLogHook h = dynamicLogWithPP $ def {
 	ppOutput = hPutStrLn h
 	, ppExtras = []
-	, ppOrder = \(ws:l:t:_)   -> [ws]
+	, ppOrder = \(ws:l:t:_)   -> [ws,l]
   } 
 
 myStartupHook = do 
@@ -32,7 +31,7 @@ myStartupHook = do
 	spawnOnce "nm-applet --no-agent" 
 	spawnOnce "udiskie"
 
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = {-spacingRaw True (Border 3 3 3 3) True (Border 10 10 10 10) True $-} tiled ||| multiCol [1] 1 0.01 (-0.5) ||| Mirror tiled ||| Full
 	where 
 		tiled = Tall nmaster delta ratio
 		nmaster = 1
@@ -42,13 +41,13 @@ myLayout = tiled ||| Mirror tiled ||| Full
 defaults = def 
 	{  
 		modMask	= mod4Mask
-		,borderWidth = 2
+		,borderWidth = 1
 		--,normalBorderColor = "#ab4642"
 		--,focusedBorderColor = "#a1b56c"
-		,normalBorderColor = "#585858"
-		,focusedBorderColor = "#f8f8f8"	
+		,normalBorderColor = "#1d2021"
+		,focusedBorderColor = "#504945"	
     ,startupHook = myStartupHook
-	  ,layoutHook = spacingRaw True (Border 0 2 2 2) True (Border 8 8 8 8) True $ myLayout
+	  ,layoutHook =  myLayout
 		--,layoutHook = myLayout
     ,logHook = return()
 		
@@ -66,7 +65,7 @@ defaults = def
 		,("M-r", spawn "rofi -show run")
 		,("M-e", spawn "alacritty -e ranger")
     
-    ,("M-<F1>", spawn "alacritty -e btop")
+    ,("M-<F1>", spawn "alacritty -e htop")
     ,("M-<F2>", spawn "code")  
 		,("M-<F3>", spawn "chromium")
     ,("M-<F4>", spawn "xournalpp") 
