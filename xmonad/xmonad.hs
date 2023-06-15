@@ -10,6 +10,7 @@ import XMonad.Hooks.EwmhDesktops
 import System.IO
 import XMonad.Layout.Spacing
 import XMonad.Layout.MultiColumns
+import qualified XMonad.StackSet as W
 
 main :: IO()
 main = do 
@@ -31,7 +32,7 @@ myStartupHook = do
 	spawnOnce "nm-applet --no-agent" 
 	spawnOnce "udiskie"
 
-myLayout = {-spacingRaw True (Border 3 3 3 3) True (Border 10 10 10 10) True $-} tiled ||| multiCol [1] 1 0.01 (-0.5) ||| Mirror tiled ||| Full
+myLayout = {-spacingRaw True (Border 3 3 3 3) True (Border 10 10 10 10) True $-} multiCol [1] 1 0.01 (-0.5) ||| tiled ||| Mirror tiled ||| Full
 	where 
 		tiled = Tall nmaster delta ratio
 		nmaster = 1
@@ -45,28 +46,29 @@ defaults = def
 		--,normalBorderColor = "#ab4642"
 		--,focusedBorderColor = "#a1b56c"
 		,normalBorderColor = "#1d2021"
-		,focusedBorderColor = "#504945"	
+		,focusedBorderColor = "#928374"	
     ,startupHook = myStartupHook
 	  ,layoutHook =  myLayout
 		--,layoutHook = myLayout
     ,logHook = return()
 		
 	}
-	`additionalKeysP`
-	[
-		("M-S-r", restart "xmonad" True)
-		,("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume 0 +1%")
-		,("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume 0 -1%")
-		--("<XF86AudioMute>", spawn "pactl set-sink-mute 0 true"),
-		,("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10")
-		,("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10")
-		,("M-q", kill)
-		,("M-<Return>", spawn "alacritty")
-		,("M-r", spawn "rofi -show run")
-		,("M-e", spawn "alacritty -e ranger")
+	`additionalKeysP` [
+		("M-<Tab>", windows W.focusDown),
+		("M-S-<Tab>", windows W.swapDown),
+		("M-v", spawn "alacritty -e nvim"),
+		("M-S-r", restart "xmonad" True),
+		("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume 0 +1%"),
+		("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume 0 -1%"),
+		("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10"),
+		("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10"),
+		("M-q", kill),
+		("M-<Return>", spawn "alacritty"),
+		("M-r", spawn "rofi -show run"),
+		("M-e", spawn "alacritty -e ranger"),
     
-    ,("M-<F1>", spawn "alacritty -e htop")
-    ,("M-<F2>", spawn "code")  
-		,("M-<F3>", spawn "chromium")
-    ,("M-<F4>", spawn "xournalpp") 
+    ("M-<F1>", spawn "alacritty -e htop"),
+    ("M-<F2>", spawn "code"),
+		("M-<F3>", spawn "chromium"),
+    ("M-<F4>", spawn "xournalpp") 
 	]

@@ -11,6 +11,8 @@ code
 efibootmgr
 feh
 fzf
+ghcup-hs-bin
+gimp
 git
 gst-plugin-pipewire
 htop
