@@ -11,4 +11,6 @@
 //@theme "/usr/share/rofi/themes/Indego.rasi"
 //@theme "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"
 //@theme "/usr/share/rofi/themes/gruvbox-light-soft.rasi"
+//@theme "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"
+//@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
 @theme "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"

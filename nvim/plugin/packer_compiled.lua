@@ -79,10 +79,25 @@ _G.packer_plugins = {
     path = "/home/felix/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  NeoSolarized = {
+    loaded = true,
+    path = "/home/felix/.local/share/nvim/site/pack/packer/start/NeoSolarized",
+    url = "https://github.com/overcache/NeoSolarized"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/felix/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["everforest-nvim"] = {
+    loaded = true,
+    path = "/home/felix/.local/share/nvim/site/pack/packer/start/everforest-nvim",
+    url = "https://github.com/neanias/everforest-nvim"
+  },
+  ["fzf.vim"] = {
+    loaded = true,
+    path = "/home/felix/.local/share/nvim/site/pack/packer/start/fzf.vim",
+    url = "https://github.com/junegunn/fzf.vim"
   },
   ["gruvbox.nvim"] = {
     loaded = true,
@@ -104,10 +119,11 @@ _G.packer_plugins = {
     path = "/home/felix/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
-  ["nvim-base16"] = {
+  ["nvim-autopairs"] = {
+    config = { "\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
     loaded = true,
-    path = "/home/felix/.local/share/nvim/site/pack/packer/start/nvim-base16",
-    url = "https://github.com/RRethy/nvim-base16"
+    path = "/home/felix/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -118,6 +134,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/felix/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-solarized-lua"] = {
+    loaded = true,
+    path = "/home/felix/.local/share/nvim/site/pack/packer/start/nvim-solarized-lua",
+    url = "https://github.com/ishan9299/nvim-solarized-lua"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -139,14 +160,33 @@ _G.packer_plugins = {
     path = "/home/felix/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["seoul256.vim"] = {
+    loaded = true,
+    path = "/home/felix/.local/share/nvim/site/pack/packer/start/seoul256.vim",
+    url = "https://github.com/junegunn/seoul256.vim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/felix/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  vimtex = {
+    loaded = true,
+    path = "/home/felix/.local/share/nvim/site/pack/packer/start/vimtex",
+    url = "https://github.com/lervag/vimtex"
+  },
+  ["zenburn.nvim"] = {
+    loaded = true,
+    path = "/home/felix/.local/share/nvim/site/pack/packer/start/zenburn.nvim",
+    url = "https://github.com/phha/zenburn.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

@@ -1,3 +1,6 @@
+require("core.plugin_config.solarized")
+require("core.plugin_config.fzf")
+require("core.plugin_config.vimtex")
 require("core.plugin_config.autopairs")
 require("core.plugin_config.base16")
 require("core.plugin_config.gruvbox")

@@ -1,10 +1,10 @@
 Config { 
 	overrideRedirect = False
 	, font     = "IBM Plex Mono 11"
-	, bgColor  = "#1d2021"
+	, bgColor  = "#282828"
 	, fgColor  = "#928374"
 	, position = TopH 25
-
+	--, hideOnStart = True
 	, sepChar  = "%"
 	, alignSep = "}{"
 	, template = "%date% | <fc=#fbf1c7>%wifi%</fc>}<fc=#fbf1c7>%StdinReader%</fc>{[%multicpu%/%coretemp%]-[%memory%]-[vol:%volume%]-[backl:%backlight%] <fc=#fbf1c7>%battery%</fc> "
@@ -19,7 +19,7 @@ Config {
 			"--template" , "<core0>°C"
 			, "--High"     , "60"        -- units: °C
 			, "--high"     , "#cc241d"  
-		] 10    
+		] 10 
 		, Run Memory ["--template", "mem:<usedratio>%"] 10
 		, Run Battery [ 
 			"--template" , "batt:<left>%"

@@ -45,8 +45,8 @@ defaults = def
 		,borderWidth = 1
 		--,normalBorderColor = "#ab4642"
 		--,focusedBorderColor = "#a1b56c"
-		,normalBorderColor = "#1d2021"
-		,focusedBorderColor = "#928374"	
+		,normalBorderColor = "#282828"
+		,focusedBorderColor = "#7c6f64"
     ,startupHook = myStartupHook
 	  ,layoutHook =  myLayout
 		--,layoutHook = myLayout
@@ -56,18 +56,22 @@ defaults = def
 	`additionalKeysP` [
 		("M-<Tab>", windows W.focusDown),
 		("M-S-<Tab>", windows W.swapDown),
-		("M-v", spawn "alacritty -e nvim"),
 		("M-S-r", restart "xmonad" True),
+		("M-q", kill),
+		--("M-b", sendMessage ToggleStructs),
+		
 		("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume 0 +1%"),
 		("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume 0 -1%"),
 		("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10"),
 		("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10"),
-		("M-q", kill),
+
 		("M-<Return>", spawn "alacritty"),
+		("M-v", spawn "alacritty -e nvim -c 'Files'"),
+		--("M-v", spawn "alacritty -e nvim -c 'Telescope find_files hidden=true no_ignore=true'"),
 		("M-r", spawn "rofi -show run"),
 		("M-e", spawn "alacritty -e ranger"),
-    
-    ("M-<F1>", spawn "alacritty -e htop"),
+
+    ("M-<F1>", spawn "alacritty -e btop"),
     ("M-<F2>", spawn "code"),
 		("M-<F3>", spawn "chromium"),
     ("M-<F4>", spawn "xournalpp") 

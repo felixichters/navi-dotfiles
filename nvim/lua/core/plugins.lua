@@ -12,6 +12,14 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
+	use 'neanias/everforest-nvim'
+	use	'junegunn/seoul256.vim'
+	use 'phha/zenburn.nvim'
+	use 'ellisonleao/gruvbox.nvim'
+	use 'ishan9299/nvim-solarized-lua'
+	--use 'overcache/NeoSolarized'
+
+	use 'lervag/vimtex'
 	use 'wbthomason/packer.nvim'
 	use 'nvim-lualine/lualine.nvim'
 	use 'nvim-treesitter/nvim-treesitter'
@@ -19,12 +27,11 @@ return require('packer').startup(function(use)
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'L3MON4D3/LuaSnip'
-	use 'RRethy/nvim-base16'
+	use 'junegunn/fzf.vim'
 	use {
 	"windwp/nvim-autopairs",
 		config = function() require("nvim-autopairs").setup {} end
 	}
-	use 'ellisonleao/gruvbox.nvim'
 	use {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
